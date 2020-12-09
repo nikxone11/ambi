@@ -1,0 +1,7 @@
+{
+  "name": "uber",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
