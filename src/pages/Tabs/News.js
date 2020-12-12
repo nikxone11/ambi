@@ -1,17 +1,57 @@
-import React  from "react";
+
+import React, {useState} from "react";
 import { IonPage, IonContent } from "@ionic/react";
 import SmallHeader from "../../components/Header/SmallHeader";
 import LargeHeader from "../../components/Header/LargeHeader";
-import { withGoogleMap, withScriptjs, GoogleMap, mapStyles
+import { withGoogleMap, withScriptjs, GoogleMap, mapStyles, Marker,  InfoWindow, google
 } from "react-google-maps";
 
+
+
+
 function Map() {
+  const [selectedMark, setSelectedMark] = useState(null);
 return (
+  
    <GoogleMap
       defaultZoom={14}
       defaultCenter={{ lat: 19.079023, lng: 72.908012 }}
       defaultOptions={{ styles: mapStyles }}
-    ></GoogleMap>)
+    >
+    <Marker  position={{
+      lat:19.098579,
+      lng:72.904931
+       }}
+         onClick={() => {
+           setSelectedMark()
+           ;
+         
+         
+         }}
+       />
+       {selectedMark && (
+         <InfoWindow
+          position={{
+             lat:19.098579,
+             lng:72.904931
+       }}>
+            <div>Mark details</div>
+         </InfoWindow>
+       )}
+       <Marker  position={{
+      lat:19.079023,
+      lng:72.908012
+       }} icon={{
+         url: '/ambulance.svg',
+          size: {width: 60, height: 100}, anchor: {x: 15, y: 50}, scaledSize: {width: 50, height: 80}
+       }} >
+       </Marker>
+    </GoogleMap>
+    
+
+    )
+    
+    
 }
  const WrappedMap = withScriptjs(withGoogleMap(Map));
 const News = (props) => {
@@ -39,9 +79,17 @@ export default function App() {
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `100%` }} />}
         mapElement={<div style={{ height: `100%` }} />}
-      />
+      ></WrappedMap>
     </div>
     
   );
 }
+
+
+
+
+
+
+
+  
   
